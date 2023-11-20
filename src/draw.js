@@ -12,7 +12,7 @@ function draw(fps, t) {
     var g = ctx
     
     g.fillStyle = global.pColor
-    global.pManager.drawPoints(g)
+    global.jellyfish.forEach(j=>j.drawPoints(g))
 
     if( false ){
         //debug
@@ -20,6 +20,18 @@ function draw(fps, t) {
         var r = .1
         ctx.fillStyle = 'red'
         global.screenCorners.forEach(c => ctx.fillRect( c.x-r, c.y-r, 2*r, 2*r ))
+    }
+    
+    if( global.debugLines ){
+        global.debugLines.forEach(l => {
+            let [color,a,b] = l
+            g.lineWidth = .001
+            g.strokeStyle = color
+            g.beginPath()
+            g.moveTo(a.x,a.y)
+            g.lineTo(b.x,b.y)
+            g.stroke()
+        })
     }
 
 

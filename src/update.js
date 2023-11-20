@@ -5,21 +5,21 @@ function update(dt) {
     fitToContainer()
     global.t += dt
     
-    // set one particle to mouse position
-    global.pManager.data[0] = global.mousePos.x
-    global.pManager.data[1] = global.mousePos.y
-    
-    // run physics
-    global.pManager.update(dt)
+    global.jellyfish.forEach(j=>{
+        
+        // run physics
+        j.update(dt)
             
-    // autoreset periodically
-    if( false ){
-        if( global.resetCountdown > 0 ){
-            global.resetCountdown -= dt
-        } else {
-            fitToContainer(true) 
+        // autoreset periodically
+        if( true ){
+            if( j.resetCountdown > 0 ){
+                j.resetCountdown -= dt
+            } else {
+                j.randomTarget()
+                j.resetCountdown = randRange(...global.resetDelay)
+            }
         }
-    }
+    })
 }
 
 

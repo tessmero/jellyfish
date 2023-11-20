@@ -16,13 +16,13 @@ function init() {
     global.canvas = cvs
     global.ctx = cvs.getContext("2d");
     
-    global.pManager = new PointManager()
     resetGame()
     requestAnimationFrame(gameLoop);
 }
 
 function resetGame() {
-    global.pManager.reset()
+    global.jellyfish = []
+    for( let i = 0 ; i < 5 ; i++ ) global.jellyfish.push(new Jellyfish())
 }
 
 
